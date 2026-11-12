@@ -1,0 +1,31 @@
+<!doctype html>
+<!--
+  File guide:
+  - style.css: page layout, colors, and component styles.
+  - script.js: app behavior, data handling, and page rendering.
+  - schema.sql: Supabase tables, team access, and database policies.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Leads &amp; Stats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Supabase client library used by script.js to connect to the database. -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.0/dist/umd/supabase.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- JavaScript renders the app here and uses the dialog and toast for feedback. -->
+    <div id="app"></div>
+    <dialog id="dlg"></dialog>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
