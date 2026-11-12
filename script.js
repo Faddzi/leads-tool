@@ -118,21 +118,7 @@ function avatar(name, cls) {
   const ini = (
     (parts[0] || "?")[0] + (parts.length > 1 ? parts[parts.length - 1][0] : "")
   ).toUpperCase();
-  let h = 7;
-  for (let i = 0; i < s.length; i++)
-    h = (Math.imul(h, 33) ^ s.charCodeAt(i)) >>> 0;
-  h = (h * 47) % 360;
-  return (
-    '<span class="av ' +
-    (cls || "") +
-    '" style="background:hsl(' +
-    h +
-    " 60% 50% / .16);color:hsl(" +
-    h +
-    ' 55% var(--avl))">' +
-    esc(ini) +
-    "</span>"
-  );
+  return '<span class="av ' + (cls || "") + '">' + esc(ini) + "</span>";
 }
 function tone(s) {
   if (/^(not |no show|ghost|dead|cancel)/i.test(s)) return "bad";
@@ -491,7 +477,7 @@ function showLogin(msg) {
 }
 async function enter(session) {
   me = (session.user.email || "").toLowerCase();
-  shell('<p class="mut" style="margin:0">Loading your leads…</p>');
+  shell('<p class="mut" style="margin:0">Loading leads…</p>');
   let ok = false;
   try {
     ok = await run(sb.rpc("claim_first_admin"));
@@ -647,7 +633,7 @@ function vToday() {
       : '<div class="empty">Nothing here.</div>';
   return (
     head(
-      hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening",
+      "Today",
       fmt(t),
     ) +
     '<div class="grid k4" style="margin-bottom:16px">' +
@@ -685,7 +671,7 @@ function vToday() {
             )
             .join("") +
           "</table></div>"
-        : '<div class="empty">You are all caught up. Set a next follow-up date on a lead and it will show here when it is due.</div>') +
+        : '<div class="empty">No follow-ups due. A lead appears here on its next follow-up date.</div>') +
         (noNext
           ? '<div class="pager" style="justify-content:flex-start"><span class="mut">' +
             noNext +
@@ -1784,7 +1770,7 @@ function vStats() {
   return (
     head(
       "Stats",
-      "Leads, free trials and paid customers over time",
+      "",
       '<select data-range="1" aria-label="Period">' +
         R.map(
           (r) =>
@@ -2195,7 +2181,7 @@ function vImport() {
   return (
     head(
       "Import from the Google Sheet",
-      "This only reads the sheet. Nothing is ever written back to it.",
+      "The import reads the sheet and never writes to it.",
     ) +
     '<div class="card"><div class="bd"><p style="margin-top:0">' +
     (n
